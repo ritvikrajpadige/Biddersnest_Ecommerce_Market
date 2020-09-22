@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bidders Nest home page">
+    <meta name="author" content="T87AN">
+    <link rel="icon" href="./icons/Logo.png" type="image/gif" sizes="50x50">
+    <title>Bidders Nest</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body style="margin-top:55px;">
+
+<%- include('partials/navbar') %>
+
+<%- include('errorMessages') %>
+<section id="Intro Content">
+<div class="jumbotron mt-3" style="text-align:center;">
+  <img src="./icons/Logo.png" alt="BiddersNest Logo">
+  <h1>Bidders Nest</h1>
+  <h4>MEC's very own online Auction platform.</h4>
+</div>
+
+<div class="card-deck row">
+  <div class="card m-4 p-1 col-lg-3">
+    <div class="card-body">
+      <h1>Start Auction</h1>
+      <hr>
+      <h5>Got something you want to sell off. We got you covered.</h5>
+    </div>
+    <div class="card-footer" style="background-color:white;">
+      <a href="/startauction" class="btn btn-outline-dark btn-lg btn-block" role="button">Start Auction</a>
+</div>
+  </div>
+
+    <div class="card m-4 p-1 col-lg-3">
+      <div class="card-body">
+        <h1>Auctions By You</h1>
+        <hr>
+        <h5>Keep track of who might win your Auction.</h5>
+      </div>
+      <div class="card-footer" style="background-color:white;">
+        <a href="/manageauctions" class="btn btn-outline-dark btn-lg btn-block" role="button">View More</a>
+      </div>
+    </div>
+
+  <div class="card m-4 p-1 col-lg-3">
+    <div class="card-body">
+      <h1>Your Bids</h1>
+      <hr>
+      <h5>The item that you are intrested in someone might be grabbing it,so be sure to check it regularly.</h5>
+    </div>
+    <div class="card-footer" style="background-color:white;">
+      <a href="/viewbids" class="btn btn-outline-dark btn-lg btn-block" role="button">View More</a>
+</div>
+  </div>
+
+  <div class="card m-4 p-1 col-lg-3">
+    <div class="card-body">
+      <h1>Chatroom</h1>
+      <hr>
+      <h5>Chat with other Users and Auctioneers to keep track of what is happening around.</h5>
+    </div>
+    <div class="card-footer" style="background-color:white;">
+      <a href="/chatroom" class="btn btn-outline-dark btn-lg btn-block" role="button">Chat</a>
+    </div>
+  </div>
+</div>
+  </section>
+
+
+<section id="Auction_items">
+<div class="card-deck row">
+  <% post.forEach(function(item){ %>
+    <div class="col-md-3">
+            <div class="card m-3 p-1" >
+                <a href="/image/<%= item.image%>" target="_blank"><img class="card-img-top img-fluid img-responsive" src="/image/<%= item.image %>" alt="Not a Valid image" style="max-height:200px;"></a>
+                <div class="card-block">
+                  <h5><%= item.name %></h5>
+                  <p><small><%= AName %></small></p>
+                  <p>Current Price: <strong><%= item.currentBid %></strong></p>
+                  <p>Highest Bidder: <strong><%= item.currentBidder.name %></strong></p>
+                  <p>Participants: <strong><%= item.participants.length %></strong></p>
+                  <p>Status: <strong><%= item.status %></strong></p>
+                </div>
+                <a href="/items/<%= item._id %>" class="btn btn-outline-dark btn-lg btn-block mt-2" role="button">View More</a>
+            </div>
+        </div>
+  <% }) %>
+</div>
+</section>
+<%- include('partials/footer') %>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  </body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

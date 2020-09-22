@@ -1,0 +1,34 @@
+<!-- Button trigger modal -->
+<button type="button" id="BidUpdate" class="btn btn-dark btn-lg btn-block" data-toggle="modal" data-target="#productModal<%= Item._id %>" disabled style="margin-left:auto;">Place Bid</button>
+
+<!-- Modal -->
+<div class="modal fade" id="productModal<%= Item._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" id="<%= Item._id %>">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><%= Item.name%></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="" action="/placeBid/<%= Item._id %>" method="post">
+      <div class="modal-body">
+        <label for="updatedValue">You are placing:</label>
+          <input type="number" id="placeUpdatedValue" name="updatedValue" value="<%= Item.currentBid +1 %>" min="<%= Item.currentBid + 1 %>" required>
+            </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+        <button type="submit" class="btn btn-primary">Place Bid</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var interval = 5000;  // 1000 = 1 second, 3000 = 3 seconds
+  function getUpdatedValue() {
+    $("#placeUpdatedValue").load("/getCurrentBidValue/<%= Item.id %>");
+  }
+  setInterval(getUpdatedValue, interval);
+</script>
